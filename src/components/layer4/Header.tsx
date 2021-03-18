@@ -51,7 +51,9 @@ const RightBox = styled.div`
 
 const Item = styled.p`
   margin: 0 10px;
+  transition: 200ms;
   &:hover {
     cursor: pointer;
+    transform: scale(1.1);
   }
 `
