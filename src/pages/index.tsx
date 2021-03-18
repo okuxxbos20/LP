@@ -1,15 +1,26 @@
-import Link from 'next/link';
-import Layout from '../components/Layout';
+import { ContentBlock } from '../components/layer3'
+import { Footer, Header } from '../components/layer4'
 
 const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
-  </Layout>
-);
+  <>
+    <Header />
+    <ContentBlock padding="50px 20px 20px" height="250px">
+      <p>content block</p>
+    </ContentBlock>
+    <ContentBlock bg="#e8ecf1">
+      <p>content block</p>
+    </ContentBlock>
+    <ContentBlock>
+      <p>content block</p>
+    </ContentBlock>
+    <ContentBlock bg="#e8ecf1">
+      <p>content block</p>
+    </ContentBlock>
+    <ContentBlock>
+      <p>content block</p>
+    </ContentBlock>
+    <Footer />
+  </>
+)
 
-export default IndexPage;
+export default IndexPage

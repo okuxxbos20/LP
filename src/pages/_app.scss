@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Roboto'), url(/fonts/Roboto/Roboto-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Noto Sans JP'),
+    url(/fonts/Noto_Sans_JP/NotoSansJP-Regular.woff) format('woff');
+}
+
+body {
+  font-family: 'Roboto';
+  // Do not display dcrollbar on Firefox
+  scrollbar-width: none;
+  // Do not display dcrollbar on IE and Edge
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  // Do not display dcrollbar on Chrome and Safari
+  display: none;
+}

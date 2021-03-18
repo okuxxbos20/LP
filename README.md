@@ -1,27 +1,7 @@
-# Next.js with TypeScript Template
-
-Next.js を TypeScript で使うために必要そうなパッケージを一通りいれたテンプレート。
-
-## how to use
-
-### 開発時
+### Libraries
 
 ```
-yarn dev
+- react-reveal
+- styeld-components
+- material-ui
 ```
-
-### test
-
-```
-yarn test
-```
-
-### lint
-
-```
-yarn lint
-```
-
-### その他
-
-pre-commit で型チェック・lint・test 行うようになっています。
