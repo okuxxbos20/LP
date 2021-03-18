@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { ScrollTo } from 'react-scroll-to'
 import styled from 'styled-components'
 
 export const Header: FC = () => {
@@ -6,9 +7,24 @@ export const Header: FC = () => {
     <HeaderWrapper>
       <p>Logo</p>
       <RightBox>
-        <Item>item</Item>
-        <Item>item</Item>
-        <Item>item</Item>
+        <ScrollTo>
+          {({ scroll }) => (
+            <>
+              <Item onClick={() => scroll({ y: 200, smooth: true })}>
+                About Us
+              </Item>
+              <Item onClick={() => scroll({ y: 500, smooth: true })}>
+                Mission
+              </Item>
+              <Item onClick={() => scroll({ y: 800, smooth: true })}>
+                Contact
+              </Item>
+              <Item onClick={() => scroll({ y: 1100, smooth: true })}>
+                Access
+              </Item>
+            </>
+          )}
+        </ScrollTo>
       </RightBox>
     </HeaderWrapper>
   )

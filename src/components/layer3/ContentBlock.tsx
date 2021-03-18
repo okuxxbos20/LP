@@ -1,18 +1,22 @@
 import { FC } from 'react'
-import { Slide } from 'react-reveal'
 import styled from 'styled-components'
 
 export const ContentBlock: FC<{
+  children: React.ReactElement
   bg?: string
   height?: string
   padding?: string
   margin?: string
-}> = ({ bg = '#fff', height = '300px', padding = '20px', margin = '0' }) => {
+}> = ({
+  children,
+  bg = '#fff',
+  height = '300px',
+  padding = '20px',
+  margin = '0',
+}) => {
   return (
     <ContentWrapper bg={bg} height={height} padding={padding} margin={margin}>
-      <Slide left>
-        <h1>Something</h1>
-      </Slide>
+      {children}
     </ContentWrapper>
   )
 }
