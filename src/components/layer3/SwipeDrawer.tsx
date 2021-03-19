@@ -1,33 +1,37 @@
 import { FC } from 'react'
 import { ScrollTo } from 'react-scroll-to'
-import { SwipeableDrawer } from '@material-ui/core/'
-import { createStyles, makeStyles } from '@material-ui/styles'
+import { Switch, SwipeableDrawer } from '@material-ui/core/'
 import { useCurrentTheme } from '../../hooks'
 import styled from 'styled-components'
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    drawerPaper: {
-      borderRadius: '0',
-    },
-  })
-)
+import { InstagramIcon, TwitterIcon } from '../icons'
+import { useRecoilState } from 'recoil'
+import { currentThemeState } from '../../state'
 
 export const SwipeDrawer: FC<{
   isSideMenuOpen: boolean
   setIsSideMenuOpen: (move: boolean) => void
 }> = ({ isSideMenuOpen, setIsSideMenuOpen }) => {
+  // iOS or not
   const iOS: boolean =
     process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
+
+  // open and close drawer
   const moveDrawer = (move: boolean): void => {
     setIsSideMenuOpen(move)
   }
+
+  // scroll when item is clicked
   const onClickItem = (scrollFunc: void) => {
     scrollFunc
     moveDrawer(false)
   }
-  const currentTheme = useCurrentTheme()
-  const classes = useStyles()
+
+  // change color mode
+  const theme = useCurrentTheme()
+  const [currentTheme, setCurrentTheme] = useRecoilState<'light' | 'dark'>(
+    currentThemeState
+  )
+
   return (
     <SwipeableDrawer
       open={isSideMenuOpen}
@@ -36,43 +40,52 @@ export const SwipeDrawer: FC<{
       disableBackdropTransition={!iOS}
       disableDiscovery={iOS}
       anchor="right"
-      classes={{ paper: classes.drawerPaper }}
     >
-      <DrawerInside bg={currentTheme.bg} text={currentTheme.text}>
+      <DrawerInside bg={theme.bg} text={theme.text}>
         <ScrollTo>
           {({ scroll }) => (
             <>
-              <Item
-                onClick={() => onClickItem(scroll({ y: 200, smooth: true }))}
-                bg={currentTheme.bg}
-                text={currentTheme.text}
-              >
-                About Us
-              </Item>
-              <Item
-                onClick={() => onClickItem(scroll({ y: 500, smooth: true }))}
-                bg={currentTheme.bg}
-                text={currentTheme.text}
-              >
-                Mission
-              </Item>
-              <Item
-                onClick={() => onClickItem(scroll({ y: 800, smooth: true }))}
-                bg={currentTheme.bg}
-                text={currentTheme.text}
-              >
-                Contact
-              </Item>
-              <Item
-                onClick={() => onClickItem(scroll({ y: 1100, smooth: true }))}
-                bg={currentTheme.bg}
-                text={currentTheme.text}
-              >
-                Access
-              </Item>
+              {[
+                { scroll: 200, label: 'About Us' },
+                { scroll: 500, label: 'Mission' },
+                { scroll: 800, label: 'Contact' },
+                { scroll: 1100, label: 'Access' },
+              ].map((item: { scroll: number; label: string }) => {
+                return (
+                  <Item
+                    onClick={() =>
+                      onClickItem(scroll({ y: item.scroll, smooth: true }))
+                    }
+                    bg={theme.bg}
+                    text={theme.text}
+                    key={item.label}
+                  >
+                    {item.label}
+                  </Item>
+                )
+              })}
             </>
           )}
         </ScrollTo>
+        <SnsPlace borderColor={theme.text}>
+          <InstagramIcon
+            link="https://www.instagram.com/instagram/"
+            color={theme.text}
+          />
+          <TwitterIcon link="https://twitter.com/Twitter" color={theme.text} />
+        </SnsPlace>
+        <SwitchWrapper borderColor={theme.text}>
+          <p>dark</p>
+          <Switch
+            checked={currentTheme === 'light' ? true : false}
+            onChange={() =>
+              currentTheme === 'light'
+                ? setCurrentTheme('dark')
+                : setCurrentTheme('light')
+            }
+          />
+          <p>light</p>
+        </SwitchWrapper>
       </DrawerInside>
     </SwipeableDrawer>
   )
@@ -103,4 +116,29 @@ const Item = styled.p<{
     cursor: pointer;
     padding-left: 15px;
   }
+`
+
+const SnsPlace = styled.div<{
+  borderColor: string
+}>`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px 0;
+  margin-top: 30px;
+  border-top: 1px solid ${(props) => props.borderColor};
+`
+
+const SwitchWrapper = styled.div<{
+  borderColor: string
+}>`
+  width: 100%;
+  padding: 20px 0;
+  border-top: 1px solid ${(props) => props.borderColor};
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `

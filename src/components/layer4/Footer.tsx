@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import { useCurrentTheme } from '../../hooks'
 
 export const Footer: FC = () => {
-  const currentTheme = useCurrentTheme()
+  const theme = useCurrentTheme()
   return (
-    <FooterWrapper bg={currentTheme.bg}>
-      <FooterContent borderColor={currentTheme.text}>
+    <FooterWrapper bg={theme.bg}>
+      <FooterContent color={theme.text} borderColor={theme.text}>
         this is footer.
       </FooterContent>
     </FooterWrapper>
@@ -23,8 +23,10 @@ const FooterWrapper = styled.div<{
 `
 
 const FooterContent = styled.div<{
+  color: string
   borderColor: string
 }>`
+  color: ${(props) => props.color};
   width: 80%;
   border-top: 1px solid ${(props) => props.borderColor};
   margin: 0 auto;

@@ -8,16 +8,16 @@ type Drawer = (move: boolean) => void
 export const SpRightBox: FC<{ setIsSideMenuOpen: Drawer }> = ({
   setIsSideMenuOpen,
 }) => {
-  const currentTheme = useCurrentTheme()
+  const theme = useCurrentTheme()
   return (
     <SpRightBoxWrapper
       role="button"
       tabIndex={0}
       onClick={() => setIsSideMenuOpen(true)}
       onKeyDown={() => setIsSideMenuOpen(true)}
-      bg={currentTheme.bg}
+      bg={theme.bg}
     >
-      <HamburgerBorder borderColor={currentTheme.text} />
+      <HamburgerBorder borderColor={theme.text} />
     </SpRightBoxWrapper>
   )
 }

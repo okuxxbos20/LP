@@ -2,10 +2,23 @@ import { FC } from 'react'
 import { ScrollTo } from 'react-scroll-to'
 import styled from 'styled-components'
 import { breakpoints } from '../../style'
+import { InstagramIcon, TwitterIcon } from '../icons'
+import { useCurrentTheme } from '../../hooks'
 
 export const PcRightBox: FC = () => {
+  const theme = useCurrentTheme()
   return (
     <PcRightBoxWrapper>
+      <InstagramIcon
+        link="https://www.instagram.com/instagram/"
+        margin="0 10px"
+        color={theme.text}
+      />
+      <TwitterIcon
+        link="https://twitter.com/Twitter"
+        margin="0 10px"
+        color={theme.text}
+      />
       <ScrollTo>
         {({ scroll }) => (
           <>

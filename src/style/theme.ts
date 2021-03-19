@@ -5,5 +5,5 @@ export const lightTheme = {
 
 export const darkTheme = {
   bg: '#2e3131',
-  text: '#f7f7f7',
+  text: '#e8e8e8',
 } as const

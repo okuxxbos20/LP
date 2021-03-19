@@ -5,9 +5,9 @@ import { useCurrentTheme } from '../../hooks'
 
 export const Header: FC = () => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState<boolean>(false)
-  const currentTheme = useCurrentTheme()
+  const theme = useCurrentTheme()
   return (
-    <HeaderWrapper bg={currentTheme.bg} text={currentTheme.text}>
+    <HeaderWrapper bg={theme.bg} text={theme.text}>
       <p>Logo</p>
       <PcRightBox />
       <SpRightBox setIsSideMenuOpen={setIsSideMenuOpen} />
