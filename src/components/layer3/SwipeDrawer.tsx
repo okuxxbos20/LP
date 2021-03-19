@@ -44,24 +44,28 @@ export const SwipeDrawer: FC<{
             <>
               <Item
                 onClick={() => onClickItem(scroll({ y: 200, smooth: true }))}
+                bg={currentTheme.bg}
                 text={currentTheme.text}
               >
                 About Us
               </Item>
               <Item
                 onClick={() => onClickItem(scroll({ y: 500, smooth: true }))}
+                bg={currentTheme.bg}
                 text={currentTheme.text}
               >
                 Mission
               </Item>
               <Item
                 onClick={() => onClickItem(scroll({ y: 800, smooth: true }))}
+                bg={currentTheme.bg}
                 text={currentTheme.text}
               >
                 Contact
               </Item>
               <Item
                 onClick={() => onClickItem(scroll({ y: 1100, smooth: true }))}
+                bg={currentTheme.bg}
                 text={currentTheme.text}
               >
                 Access
@@ -81,18 +85,22 @@ const DrawerInside = styled.div<{
   color: ${(props) => props.text};
   background: ${(props) => props.bg};
   height: 100%;
-  padding: 10px 15px 40px;
+  padding: 10px 0;
 `
 
 const Item = styled.p<{
+  bg: string
   text: string
 }>`
   color: ${(props) => props.text};
+  background: ${(props) => props.bg};
   font-size: 20px;
-  margin: 15px;
+  padding-left: 20px;
+  margin: 15px 0;
   width: 200px;
   transition: 200ms;
   &:hover {
     cursor: pointer;
+    padding-left: 15px;
   }
 `
