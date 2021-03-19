@@ -7,4 +7,4 @@
 - recoil
 ```
 
-You can view the [demo](https://nextjs-ts-lp-template.vercel.app/)
+You can view the [demo](https://nextjs-ts-lp-template.vercel.app/).
