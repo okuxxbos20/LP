@@ -1,31 +1,19 @@
-import { FC } from 'react'
-import { ScrollTo } from 'react-scroll-to'
+import { FC, useState } from 'react'
 import styled from 'styled-components'
+import { PcRightBox, SpRightBox, SwipeDrawer } from '../layer3'
 
 export const Header: FC = () => {
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState<boolean>(false)
+  console.log(isSideMenuOpen)
   return (
     <HeaderWrapper>
       <p>Logo</p>
-      <RightBox>
-        <ScrollTo>
-          {({ scroll }) => (
-            <>
-              <Item onClick={() => scroll({ y: 200, smooth: true })}>
-                About Us
-              </Item>
-              <Item onClick={() => scroll({ y: 500, smooth: true })}>
-                Mission
-              </Item>
-              <Item onClick={() => scroll({ y: 800, smooth: true })}>
-                Contact
-              </Item>
-              <Item onClick={() => scroll({ y: 1100, smooth: true })}>
-                Access
-              </Item>
-            </>
-          )}
-        </ScrollTo>
-      </RightBox>
+      <PcRightBox />
+      <SpRightBox setIsSideMenuOpen={setIsSideMenuOpen} />
+      <SwipeDrawer
+        isSideMenuOpen={isSideMenuOpen}
+        setIsSideMenuOpen={setIsSideMenuOpen}
+      />
     </HeaderWrapper>
   )
 }
@@ -40,20 +28,4 @@ const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   position: fixed;
-`
-
-const RightBox = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`
-
-const Item = styled.p`
-  margin: 0 10px;
-  transition: 200ms;
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-  }
 `
