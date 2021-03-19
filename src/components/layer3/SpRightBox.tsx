@@ -1,28 +1,33 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import { breakpoints } from '../../style'
+import { useCurrentTheme } from '../../hooks'
 
 type Drawer = (move: boolean) => void
 
 export const SpRightBox: FC<{ setIsSideMenuOpen: Drawer }> = ({
   setIsSideMenuOpen,
 }) => {
+  const currentTheme = useCurrentTheme()
   return (
     <SpRightBoxWrapper
       role="button"
       tabIndex={0}
       onClick={() => setIsSideMenuOpen(true)}
       onKeyDown={() => setIsSideMenuOpen(true)}
+      bg={currentTheme.bg}
     >
-      <HamburgerBorder />
+      <HamburgerBorder borderColor={currentTheme.text} />
     </SpRightBoxWrapper>
   )
 }
 
-const SpRightBoxWrapper = styled.div`
+const SpRightBoxWrapper = styled.div<{
+  bg: string
+}>`
   display: none;
   @media (max-width: ${breakpoints.tablet}) {
-    background: transparent;
+    background: ${(props) => props.bg};
     display: grid;
     width: 40px;
     height: 40px;
@@ -32,7 +37,7 @@ const SpRightBoxWrapper = styled.div`
     transition: 200ms;
     &:hover {
       cursor: pointer;
-      background: rgba(229, 231, 233, 0.8);
+      opacity: 0.5;
     }
     &:focus {
       outline: none;
@@ -40,8 +45,10 @@ const SpRightBoxWrapper = styled.div`
   }
 `
 
-const HamburgerBorder = styled.span`
-  background: #111;
+const HamburgerBorder = styled.span<{
+  borderColor: string
+}>`
+  background: ${(props) => props.borderColor};
   width: 18px;
   height: 2px;
   display: block;
@@ -52,7 +59,7 @@ const HamburgerBorder = styled.span`
   transform: translate(-50%, -50%);
   &:before {
     content: '';
-    background: #111;
+    background: ${(props) => props.borderColor};
     width: 18px;
     height: 2px;
     position: absolute;
@@ -60,7 +67,7 @@ const HamburgerBorder = styled.span`
   }
   &:after {
     content: '';
-    background: #111;
+    background: ${(props) => props.borderColor};
     width: 18px;
     height: 2px;
     position: absolute;

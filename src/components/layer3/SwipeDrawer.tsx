@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { ScrollTo } from 'react-scroll-to'
 import { SwipeableDrawer } from '@material-ui/core/'
 import { createStyles, makeStyles } from '@material-ui/styles'
+import { useCurrentTheme } from '../../hooks'
 import styled from 'styled-components'
 
 const useStyles = makeStyles(() =>
@@ -25,6 +26,7 @@ export const SwipeDrawer: FC<{
     scrollFunc
     moveDrawer(false)
   }
+  const currentTheme = useCurrentTheme()
   const classes = useStyles()
   return (
     <SwipeableDrawer
@@ -36,27 +38,31 @@ export const SwipeDrawer: FC<{
       anchor="right"
       classes={{ paper: classes.drawerPaper }}
     >
-      <DrawerInside>
+      <DrawerInside bg={currentTheme.bg} text={currentTheme.text}>
         <ScrollTo>
           {({ scroll }) => (
             <>
               <Item
                 onClick={() => onClickItem(scroll({ y: 200, smooth: true }))}
+                text={currentTheme.text}
               >
                 About Us
               </Item>
               <Item
                 onClick={() => onClickItem(scroll({ y: 500, smooth: true }))}
+                text={currentTheme.text}
               >
                 Mission
               </Item>
               <Item
                 onClick={() => onClickItem(scroll({ y: 800, smooth: true }))}
+                text={currentTheme.text}
               >
                 Contact
               </Item>
               <Item
                 onClick={() => onClickItem(scroll({ y: 1100, smooth: true }))}
+                text={currentTheme.text}
               >
                 Access
               </Item>
@@ -68,17 +74,24 @@ export const SwipeDrawer: FC<{
   )
 }
 
-const DrawerInside = styled.div`
-  background: transparent;
+const DrawerInside = styled.div<{
+  bg: string
+  text: string
+}>`
+  color: ${(props) => props.text};
+  background: ${(props) => props.bg};
+  height: 100%;
   padding: 10px 15px 40px;
 `
 
-const Item = styled.p`
+const Item = styled.p<{
+  text: string
+}>`
+  color: ${(props) => props.text};
   font-size: 20px;
   margin: 15px;
   width: 200px;
   transition: 200ms;
-  /* background: pink; */
   &:hover {
     cursor: pointer;
   }
