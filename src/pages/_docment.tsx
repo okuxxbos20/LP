@@ -7,12 +7,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="ja">
         <Head>
-          <style>{`
-            * {
-              padding: 0;
-              margin: 0;
-            }
-          `}</style>
+          <link rel="icon" href="/favicons/favicon.ico" />
         </Head>
         <body>
           <Main />
