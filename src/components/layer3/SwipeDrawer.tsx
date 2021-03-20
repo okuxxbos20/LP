@@ -56,7 +56,6 @@ export const SwipeDrawer: FC<{
                     onClick={() =>
                       onClickItem(scroll({ y: item.scroll, smooth: true }))
                     }
-                    bg={theme.bg}
                     text={theme.text}
                     key={item.label}
                   >
@@ -102,11 +101,9 @@ const DrawerInside = styled.div<{
 `
 
 const Item = styled.p<{
-  bg: string
   text: string
 }>`
   color: ${(props) => props.text};
-  background: ${(props) => props.bg};
   font-size: 20px;
   padding-left: 20px;
   margin: 15px 0;
