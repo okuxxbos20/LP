@@ -9,10 +9,8 @@ on:
         description: branch|tag|SHA to checkout
         default: 'master'
         required: true
-  # 毎日日本時間の 11時 に GitHub Actions が実行される (cron の時刻は UST)
-  # 実行の際に参照されるブランチは上記の default で指定したものが使用される
-  schedule:
-    - cron: '0 2 * * *'
+  push:
+    branches: [master]
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -23,7 +21,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '15'
-      # 投稿内容を更新するために npm run build:posts を走らせる
       - name: Recreate all posts
         shell: bash
         run: |
@@ -31,8 +28,6 @@ jobs:
           npm run build
       - uses: amondnet/vercel-action@v20
         with:
-          # GitHub Actions の Secrets で作成した値を参照する形で
-          # Vercel デプロイ時に必要となる各種パラメタを設定する
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
           vercel-args: '--prod' # Optional
           vercel-org-id: ${{ secrets.ORG_ID}} #Required
