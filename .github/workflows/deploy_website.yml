@@ -28,7 +28,6 @@ jobs:
         shell: bash
         run: |
           npm install
-          npm i -g vercel
           npm run build
       - uses: amondnet/vercel-action@v20
         with:
