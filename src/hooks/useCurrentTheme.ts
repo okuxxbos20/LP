@@ -4,9 +4,5 @@ import { darkTheme, lightTheme } from '../style/theme'
 
 export const useCurrentTheme = () => {
   const currentTheme = useRecoilValue(currentThemeState)
-  if (currentTheme === 'light') {
-    return lightTheme
-  } else {
-    return darkTheme
-  }
+  return currentTheme === 'light' ? lightTheme : darkTheme
 }
