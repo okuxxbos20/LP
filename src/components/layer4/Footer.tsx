@@ -5,14 +5,15 @@ import { useCurrentTheme } from '../../hooks'
 
 export const Footer: FC = () => {
   const theme = useCurrentTheme()
+  const footerItems = [
+    { label: 'item1', link: '/item1' },
+    { label: 'item2', link: '/item2' },
+    { label: 'item3', link: '/item3' },
+  ]
   return (
     <FooterWrapper bg={theme.bg}>
       <FooterContent color={theme.text} borderColor={theme.text}>
-        {[
-          { label: 'item1', link: '/item1' },
-          { label: 'item2', link: '/item2' },
-          { label: 'item3', link: '/item3' },
-        ].map((item: { label: string; link: string }) => {
+        {footerItems.map((item: { label: string; link: string }) => {
           return (
             <Link href={item.link} key={item.label}>
               <FooterItem>{item.label}</FooterItem>
