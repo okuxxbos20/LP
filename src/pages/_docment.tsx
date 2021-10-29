@@ -7,7 +7,9 @@ export default class MyDocument extends Document {
     return (
       <Html lang="ja">
         <Head>
-          <link rel="icon" href="/favicons/favicon.ico" />
+          <meta charSet="utf-8" />
+          <title>Your LandingPage</title>
+          <link rel="favicon" href="/favicons/favicon.ico" />
         </Head>
         <body>
           <Main />
