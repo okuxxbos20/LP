@@ -57,6 +57,10 @@ jobs:
                     "value": "https://nextjs-ts-lp-template.vercel.app/"
                   },
                   {
+                    "title": "Vercel Url",
+                    "value": "https://vercel.com/okuxxbos20/nextjs-ts-lp-template/deployments"
+                  },
+                  {
                     "title": "Commit Message",
                     "value": "${{ env.COMMIT_MESSAGE }}"
                   },
