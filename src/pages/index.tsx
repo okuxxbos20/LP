@@ -15,7 +15,7 @@ const IndexPage: FC = () => {
         padding="50px 20px 20px"
         height="250px"
       >
-        <h1>TITLE IS THEAR</h1>
+        <h1>TITLE IS HERE</h1>
       </ContentBlock>
       <ContentBlock color={theme.text} bg={theme.bg} opacity={0.75}>
         <Slide left>
