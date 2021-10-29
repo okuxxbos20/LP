@@ -53,9 +53,7 @@ export const SwipeDrawer: FC<{
               ].map((item: { scroll: number; label: string }) => {
                 return (
                   <Item
-                    onClick={() =>
-                      onClickItem(scroll({ y: item.scroll, smooth: true }))
-                    }
+                    onClick={() => onClickItem(scroll({ y: item.scroll, smooth: true }))}
                     text={theme.text}
                     key={item.label}
                   >
