@@ -1,5 +1,6 @@
 import { FC, useState } from 'react'
 import styled from 'styled-components'
+import Link from 'next/link'
 import { PcRightBox, SpRightBox, SwipeDrawer } from '../layer3'
 import { useCurrentTheme } from '../../hooks'
 
@@ -8,7 +9,7 @@ export const Header: FC = () => {
   const theme = useCurrentTheme()
   return (
     <HeaderWrapper bg={theme.bg} text={theme.text}>
-      <p>Logo</p>
+      <Link href='/'>Logo</Link>
       <PcRightBox />
       <SpRightBox setIsSideMenuOpen={setIsSideMenuOpen} />
       <SwipeDrawer
@@ -32,6 +33,4 @@ const HeaderWrapper = styled.div<{
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  position: fixed;
-  z-index: 1000;
 `
