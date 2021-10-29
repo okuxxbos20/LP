@@ -1,0 +1,103 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - master
+  # 一応動確のために手動で GitHub Actions を実行可能にする
+  # その際の引数として checkout 時の ref を渡している
+  # default 部分はリポジトリに設定されているデフォルトブランチを指定する
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: branch|tag|SHA to checkout
+        default: 'master'
+        required: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.ref }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '15'
+      # 投稿内容を更新するために npm run build:posts を走らせる
+      - name: Recreate all posts
+        shell: bash
+        run: |
+          npm install
+          npm run build
+      - uses: amondnet/vercel-action@v20
+        with:
+          # GitHub Actions の Secrets で作成した値を参照する形で
+          # Vercel デプロイ時に必要となる各種パラメータを設定する
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}     # Required
+          vercel-args: '--prod'                         # Optional
+          vercel-org-id: ${{ secrets.ORG_ID}}           # Required
+          vercel-project-id: ${{ secrets.PROJECT_ID}}   # Required
+          working-directory: ./
+      - name: Slack Notification on Success
+        if: success()
+        uses: tokorom/action-slack-incoming-webhook@main
+        env:
+          INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          text: Deploy Success🎉
+          attachments: |
+            [
+              {
+                "color": "good",
+                "author_name": "${{ github.actor }}",
+                "author_icon": "${{ github.event.sender.avatar_url }}",
+                "fields": [
+                  {
+                    "title": "App Url",
+                    "value": "https://nextjs-ts-lp-template.vercel.app/"
+                  },
+                  {
+                    "title": "Commit Message",
+                    "value": "${{ env.COMMIT_MESSAGE }}"
+                  },
+                  {
+                    "title": "GitHub Actions URL",
+                    "value": "${{ github.event.repository.url }}/actions/runs/${{ github.run_id }}"
+                  },
+                  {
+                    "title": "Compare URL",
+                    "value": "${{ github.event.compare }}"
+                  }
+                ]
+              }
+            ]
+      - name: Slack Notification on Failure
+        if: failure()
+        uses: tokorom/action-slack-incoming-webhook@main
+        env:
+          INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          text: 'Deploy Failure🤮'
+          attachments: |
+            [
+              {
+                "color": "danger",
+                "author_name": "${{ github.actor }}",
+                "author_icon": "${{ github.event.sender.avatar_url }}",
+                "fields": [
+                  {
+                    "title": "Commit Message",
+                    "value": "${{ env.COMMIT_MESSAGE }}"
+                  },
+                  {
+                    "title": "GitHub Actions URL",
+                    "value": "${{ github.event.repository.url }}/actions/runs/${{ github.run_id }}"
+                  },
+                  {
+                    "title": "Compare URL",
+                    "value": "${{ github.event.compare }}"
+                  }
+                ]
+              }
+            ]
+
