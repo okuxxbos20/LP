@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { ScrollTo } from 'react-scroll-to'
 import styled from 'styled-components'
-import { breakpoints } from '../../style'
-import { InstagramIcon, TwitterIcon } from '../icons'
-import { useCurrentTheme } from '../../hooks'
+import { breakpoints } from '@/style'
+import { InstagramIcon, TwitterIcon } from '@/components/icons'
+import { useCurrentTheme } from '@/hooks'
 
 export const PcRightBox: FC = () => {
   const theme = useCurrentTheme()

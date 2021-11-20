@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { breakpoints } from '../../style'
-import { useCurrentTheme } from '../../hooks'
+import { breakpoints } from '@/style'
+import { useCurrentTheme } from '@/hooks'
 
 type Drawer = (move: boolean) => void
 

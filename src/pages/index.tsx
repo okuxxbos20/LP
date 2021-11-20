@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { Slide } from 'react-reveal'
-import { ContentBlock } from '../components/layer3'
-import { Footer, Header } from '../components/layer4'
-import { useCurrentTheme } from '../hooks'
+import { ContentBlock } from '@/components/layer3'
+import { Footer, Header } from '@/components/layer4'
+import { useCurrentTheme } from '@/hooks'
 
 const IndexPage: FC = () => {
   const theme = useCurrentTheme()

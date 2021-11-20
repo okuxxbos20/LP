@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import { ScrollTo } from 'react-scroll-to'
 import { Switch, SwipeableDrawer } from '@material-ui/core/'
-import { useCurrentTheme } from '../../hooks'
+import { useCurrentTheme } from '@/hooks'
 import styled from 'styled-components'
-import { InstagramIcon, TwitterIcon } from '../icons'
+import { InstagramIcon, TwitterIcon } from '@/components/icons'
 import { useRecoilState } from 'recoil'
-import { currentThemeState } from '../../state'
+import { currentThemeState } from '@/state'
 
 export const SwipeDrawer: FC<{
   isSideMenuOpen: boolean

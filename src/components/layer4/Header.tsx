@@ -1,8 +1,8 @@
 import { FC, useState } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
-import { PcRightBox, SpRightBox, SwipeDrawer } from '../layer3'
-import { useCurrentTheme } from '../../hooks'
+import { PcRightBox, SpRightBox, SwipeDrawer } from '@/components/layer3'
+import { useCurrentTheme } from '@/hooks'
 
 export const Header: FC = () => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState<boolean>(false)

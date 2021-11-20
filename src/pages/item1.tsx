@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { Footer, Header } from '../components/layer4'
-import { useCurrentTheme } from '../hooks'
+import { Footer, Header } from '@/components/layer4'
+import { useCurrentTheme } from '@/hooks'
 
 export const ItemOne: FC = () => {
   const theme = useCurrentTheme()

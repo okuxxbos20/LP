@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
-import { useCurrentTheme } from '../../hooks'
+import { useCurrentTheme } from '@/hooks'
 
 export const Footer: FC = () => {
   const theme = useCurrentTheme()
