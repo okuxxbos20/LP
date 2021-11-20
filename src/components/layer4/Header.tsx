@@ -9,7 +9,9 @@ export const Header: FC = () => {
   const theme = useCurrentTheme()
   return (
     <HeaderWrapper bg={theme.bg} text={theme.text}>
-      <Link href='/'>Logo</Link>
+      <Link href='/'>
+        <p>Logo</p>
+      </Link>
       <PcRightBox />
       <SpRightBox setIsSideMenuOpen={setIsSideMenuOpen} />
       <SwipeDrawer

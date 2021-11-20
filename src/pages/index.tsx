@@ -12,7 +12,6 @@ const IndexPage: FC = () => {
       <ContentBlock
         color={theme.text}
         bg={theme.bg}
-        padding="50px 20px 20px"
         height="250px"
       >
         <h1>TITLE IS HERE</h1>
