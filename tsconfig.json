@@ -17,8 +17,12 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
-    "typeRoots": []
+    "typeRoots": [],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["**/*.ts", "**/*.tsx"],
 }
